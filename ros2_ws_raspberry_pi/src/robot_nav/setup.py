@@ -1,0 +1,32 @@
+import os
+from glob import glob
+
+from setuptools import find_packages, setup
+
+package_name = "robot_nav"
+
+setup(
+    name=package_name,
+    version="0.1.0",
+    packages=find_packages(exclude=["test"]),
+    data_files=[
+        ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
+        ("share/" + package_name, ["package.xml"]),
+        (os.path.join("share", package_name, "launch"), glob("launch/*.py")),
+        (os.path.join("share", package_name, "config"), glob("config/*.yaml")),
+        (os.path.join("share", package_name, "maps"), glob("maps/*")),
+    ],
+    install_requires=["setuptools"],
+    zip_safe=True,
+    maintainer="student",
+    maintainer_email="student@local",
+    description="雷达建图、定位导航的启动与速度切换。",
+    license="Apache-2.0",
+    entry_points={
+        "console_scripts": [
+            "cmd_vel_mux = robot_nav.cmd_vel_mux:main",
+            "cmdvel_odom = robot_nav.cmdvel_odom:main",
+            "nav_goal = robot_nav.nav_goal:main",
+        ],
+    },
+)

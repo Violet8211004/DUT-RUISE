@@ -1,0 +1,24 @@
+qr_detector_node:
+  ros__parameters:
+    target_code: ""
+    dx_tol: 40
+    target_width: 200
+    width_tol: 30
+
+align_node:
+  ros__parameters:
+    dx_tol: 40
+    target_width: 200
+    kp_yaw: 0.003
+    kp_lin: 0.0008
+    max_yaw: 0.35
+    max_lin: 0.06
+    stale_sec: 0.4
+
+camera_node:
+  ros__parameters:
+    width: 1280
+    height: 720
+    fps: 10.0
+    frame_id: camera_link
+    color_encoding: rgb8
